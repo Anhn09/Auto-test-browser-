@@ -1,35 +1,21 @@
 package duckduckgo.stepTest;
 
-import common.ShareData;
 import duckduckgo.actions.navigation.HomePage;
 import duckduckgo.actions.navigation.NavigationTo;
 import duckduckgo.actions.search.LookForInformation;
 import duckduckgo.actions.wait;
-import io.cucumber.java.Before;
-import net.serenitybdd.annotations.Step;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
-import net.serenitybdd.screenplay.Performable;
-import net.serenitybdd.screenplay.Task;
-import net.serenitybdd.screenplay.actions.*;
-import net.serenitybdd.screenplay.actors.OnStage;
-import net.serenitybdd.screenplay.actors.OnlineCast;
+import net.serenitybdd.screenplay.actions.Enter;
+import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.ensure.Ensure;
 import net.serenitybdd.screenplay.questions.Text;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
 
-public class WhenSearchingForTerms {
-
-    static OnlineCast theCast = new OnlineCast();
-
-    @Before
-    public void setTheStage() {
-        OnStage.setTheStage(theCast);
-    }
-
-    public static void searchForThing(String thing, String driverType, String stringActorName) {
-        Actor actorName = theCast.actorUsingBrowser(driverType).named(stringActorName);
+public class Search {
+    public static void searchForThing(String thing, Actor actorName) {
         Serenity.setSessionVariable("shareData").to(thing);
+
         actorName.attemptsTo(
                 NavigationTo.homePage(),
                 wait.waitForPageLoad(),
@@ -39,9 +25,7 @@ public class WhenSearchingForTerms {
                 Ensure.that(TheWebPage.title()).containsIgnoringCase("red")
         );
     }
-    public static void translateIterm(String driverType, String stringActorName) {
-        Actor actorName = theCast.actorUsingBrowser(driverType).named(stringActorName);
-
+    public static void translateIterm(Actor actorName) {
         String shareData1 = Serenity.sessionVariableCalled("shareData");
         System.out.println("======================="+shareData1);
 
