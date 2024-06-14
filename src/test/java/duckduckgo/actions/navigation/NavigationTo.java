@@ -10,4 +10,9 @@ public class NavigationTo {
                 Open.browserOn().the(HomePage.class)
         );
     }
+    public static Performable translatePage(){
+        return Task.where(
+                Open.browserOn().the(TranslatePage.class)
+        );
+    }
 }

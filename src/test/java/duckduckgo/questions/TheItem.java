@@ -12,6 +12,7 @@ public class TheItem {
     }
 
     public static  String getTextByJS(Actor actor, Target target) {
-        return actor.asksFor(Evaluate.javascript("return arguments[0].value", target.resolveFor(actor)).result()).toString();
+//        return actor.asksFor(Evaluate.javascript("return arguments[0].value", target.resolveFor(actor)).result()).toString();
+        return actor.asksFor(Evaluate.javascript("return arguments[0].textContent",target.resolveFor(actor)).result()).toString();
     }
 }
