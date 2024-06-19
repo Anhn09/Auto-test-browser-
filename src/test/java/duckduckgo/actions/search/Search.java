@@ -3,17 +3,13 @@ package duckduckgo.actions.search;
 import duckduckgo.actions.navigation.HomePage;
 import duckduckgo.actions.navigation.NavigationTo;
 import duckduckgo.actions.navigation.TranslatePage;
-import duckduckgo.actions.search.LookForInformation;
 import duckduckgo.actions.wait;
 import duckduckgo.questions.TheItem;
 import net.serenitybdd.core.Serenity;
 import net.serenitybdd.screenplay.Actor;
 import net.serenitybdd.screenplay.actions.Enter;
-import net.serenitybdd.screenplay.actions.Open;
 import net.serenitybdd.screenplay.ensure.Ensure;
-import net.serenitybdd.screenplay.questions.Text;
 import net.serenitybdd.screenplay.questions.page.TheWebPage;
-import net.serenitybdd.screenplay.targets.Target;
 import net.serenitybdd.screenplay.waits.WaitUntil;
 
 import static net.serenitybdd.screenplay.matchers.WebElementStateMatchers.isVisible;
@@ -33,7 +29,7 @@ public class Search {
 
     }
 
-    public static void translateIterm(Actor actorName) throws InterruptedException {
+    public static void translateIterm(Actor actorName) {
         String shareData1 = Serenity.sessionVariableCalled("shareData");
 
         actorName.attemptsTo(
@@ -43,7 +39,7 @@ public class Search {
         );
         Serenity.setSessionVariable("shareData1").to(TheItem.getTextByJS(actorName, TranslatePage.TEXT1));
     }
-    public static void searchForThings( Actor actorName) throws InterruptedException {
+    public static void searchForThings(Actor actorName) {
         String shareData1 = Serenity.sessionVariableCalled("shareData1");
 
         actorName.attemptsTo(
